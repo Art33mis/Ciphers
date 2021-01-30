@@ -34,4 +34,4 @@
     ```
 
 
-Developed by [Artyom Avtaykin](@artemeeus 'Telegram')
+Developed by [Artyom Avtaykin](https://t.me/artemeeus 'telegram')
