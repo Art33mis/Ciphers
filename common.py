@@ -1,3 +1,7 @@
+import numpy as np
+from numpy import linalg as la
+
+
 def co_or_en():
     flag = True
     while flag:
@@ -32,8 +36,7 @@ def co_en_sim(d_keys, ch1):
 
 
 def co_en_aff(d_keys, ch1, key1, key2, alpha_count):
-    i_string = input()
-    i_string = i_string.lower()
+    i_string = input().lower()
     f_dig = []
     for char in i_string:
         if char.isalpha():
@@ -121,3 +124,62 @@ def co_en_rec(d_keys, ch1, key1, key2, key3, key4, alpha_count):
         else:
             f_string = f_string + str(f_dig[i])
     print(f_string)
+
+
+def get_array(i_string, l_key1, d_keys, ch=0):
+    f_dig = []
+    s_dig = []
+    counter = 0
+    for char in i_string:
+        if counter < l_key1:
+            f_dig.append(int(d_keys[char]))
+            counter += 1
+        else:
+            counter = 1
+            s_dig.append(f_dig.copy())
+            f_dig.clear()
+            f_dig.append(int(d_keys[char]))
+    if ch == 1:
+        if len(f_dig) < l_key1:
+            while len(f_dig) < l_key1:
+                f_dig.append(36)
+    s_dig.append(f_dig)
+    return s_dig
+
+
+def get_key_h(ch, l_key=0):
+    flag = True
+    while flag:
+        print("Укажите слово-ключ\n"
+              "Его длина должна равняться квадрату целого числа")
+        s_key1 = input().lower()
+        l_key1 = len(s_key1) ** 0.5
+        i_key1 = int(l_key1)
+        if ch == 1:
+            if l_key1 == i_key1:
+                flag = False
+        if ch == 2:
+            if l_key1 == i_key1 and l_key == l_key1:
+                flag = False
+    return [l_key1, s_key1]
+
+
+def co_en_hill(d_keys, key1, s_dig):
+    f_string = ""
+    for i in range(len(s_dig)):
+        s_dig[i] = (np.dot(s_dig[i], key1)) % 37
+        for j in range(len(s_dig[i])):
+            symbol = list(d_keys.keys())[list(d_keys.values()).index(str(int(s_dig[i][j])))]
+            f_string = f_string + str(symbol)
+    return f_string
+
+
+def get_r_key_h(key1):
+    det = round(la.det(key1))
+    for i in range(1000):
+        if (det * i) % 37 == 1:
+            r_det = i
+            break
+    inv_key1 = (la.inv(key1) * det * r_det)
+    inv_key1 = np.around(inv_key1 % 37)
+    return inv_key1

@@ -5,6 +5,7 @@ def recurrent():
     print("Укажите количество слов в вашем алфавите")
     alpha_count = int(input())
     d_keys = common.o_keys_file("cipher1.txt")
+    d_keys
     key1 = common.get_key1(alpha_count)
     key2 = common.get_key1(alpha_count)
     key3 = common.get_key2(alpha_count)
