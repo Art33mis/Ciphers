@@ -5,6 +5,7 @@
 ## Technology stack
 
 - python3
+- Numpy
 
 ## Launch instruction
 
@@ -12,23 +13,27 @@
     ```
     git clone https:https://github.com/Art33mis/Ciphers.git && cd Ciphers
     ```
+2. Install dependencies
+   ```
+   pip3 install math
+   ```
     
 ### For Mac
     
-2. Create a virtual environment and activate it
+3. Create a virtual environment and activate it
     ```
     virtualenv --python=python3 venv
     source venv/bin/activate
     ```
 
-3. Launch web application
+4. Launch web application
     ```
     python3 main.py
     ```
     
 ### For Windows
 
-2. Launch web application
+3. Launch web application
     ```
     python main.py
     ```
