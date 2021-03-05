@@ -183,3 +183,55 @@ def get_r_key_h(key1):
     inv_key1 = (la.inv(key1) * det * r_det)
     inv_key1 = np.around(inv_key1 % 37)
     return inv_key1
+
+
+def co_en_vi(ch1, i_string, d_keys, s_key):
+    f_dig = []
+    s_dig = []
+    th_dig = []
+    for char in i_string:
+        f_dig.append(d_keys[char])
+    for char in s_key:
+        s_dig.append(d_keys[char])
+    for i in range(len(f_dig)):
+        if ch1 == "1":
+            th_dig.append(str((int(f_dig[i]) + int(s_dig[i])) % 37))
+        if ch1 == "2":
+            th_dig.append(str((int(f_dig[i]) - int(s_dig[i])) % 37))
+    output_str = ""
+    for char in th_dig:
+        output_str = output_str + list(d_keys.keys())[list(d_keys.values()).index(char)]
+    return output_str
+
+
+def co_en_vi1(ch1, i_string, d_keys, keys):
+    f_dig = []
+    s_dig = []
+    for char in i_string:
+        f_dig.append(d_keys[char])
+    for i in range(len(f_dig)):
+        if ch1 == "1":
+            if i == 0:
+                s_dig.append(str((int(f_dig[i]) + int(d_keys[keys[0]])) % 37))
+            else:
+                s_dig.append(str((int(f_dig[i]) + int(s_dig[i - 1])) % 37))
+        if ch1 == "2":
+            if i == 0:
+                s_dig.append(str((int(f_dig[i]) - int(d_keys[keys[0]])) % 37))
+            else:
+                s_dig.append(str((int(f_dig[i]) - int(s_dig[i - 1])) % 37))
+    output_str = ""
+    for char in s_dig:
+        output_str = output_str + list(d_keys.keys())[list(d_keys.values()).index(char)]
+    return output_str
+
+
+def get_key_v23(i_string):
+    flag = True
+    while flag:
+        print("Укажите букву-ключ\n")
+        f_key = input().lower()
+        s_key = f_key + i_string[:-1]
+        if len(f_key) == 1:
+            flag = False
+    return [f_key, s_key]

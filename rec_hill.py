@@ -1,11 +1,9 @@
 import numpy as np
-from numpy import linalg as la
 import common
-import math
 
 
 def rec_hill():
-    d_keys = common.o_keys_file("cipher1.txt")
+    d_keys = common.o_keys_file("lists_of_ciphers/cipher1.txt")
     d_keys[" "] = "36"
     f_key1 = common.get_key_h(1)
     f_key2 = common.get_key_h(2, f_key1[0])
@@ -46,7 +44,3 @@ def rec_hill():
                 f_string = f_string + str(symbol)
 
     print(f_string)
-
-
-rec_hill()
-

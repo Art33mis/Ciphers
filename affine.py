@@ -4,7 +4,7 @@ import common
 def affine():
     print("Укажите количество слов в вашем алфавите")
     alpha_count = int(input())
-    d_keys = common.o_keys_file("cipher1.txt")
+    d_keys = common.o_keys_file("lists_of_ciphers/cipher1.txt")
     key1 = common.get_key1(alpha_count)
     key2 = common.get_key2(alpha_count)
     ch1 = common.co_or_en()

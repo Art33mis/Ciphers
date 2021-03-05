@@ -1,10 +1,9 @@
 import numpy as np
-from numpy import linalg as la
 import common
 
 
 def hill():
-    d_keys = common.o_keys_file("cipher1.txt")
+    d_keys = common.o_keys_file("lists_of_ciphers/cipher1.txt")
     d_keys[" "] = "36"
     key = common.get_key_h(1)
     s_dig = common.get_array(key[1], key[0], d_keys)
