@@ -1,4 +1,36 @@
-import common
+
+
+def co_or_en():
+    flag = True
+    while flag:
+        print("Выберите действие:\n"
+              "1. Зашифровать\n"
+              "2. Расшифровать\n"
+              "Введите 1, если хотите выбрать первый вариант, и 2, если хотите выбрать 2\n")
+        ch1 = input()
+        if ch1 == "1" or ch1 == "2":
+            flag = False
+    return ch1
+
+
+def co_en_sim(d_keys, ch1):
+    if ch1 == "1":
+        print("Введите предложение, которое хотите зашифровать")
+    if ch1 == "2":
+        print("Введите предложение, которое хотите расшифровать")
+    i_string = input()
+    i_string = i_string.lower()
+    c_string = ""
+    for char in i_string:
+        if char.isalpha():
+            if ch1 == "1":
+                symbol = d_keys[char]
+            if ch1 == "2":
+                symbol = list(d_keys.keys())[list(d_keys.values()).index(char)]
+            c_string = c_string + str(symbol)
+        else:
+            c_string = c_string + char
+    return c_string
 
 
 def simple():
@@ -32,8 +64,8 @@ def simple():
                 e_input = False
             key, *value = o_string.split()
             d_keys[key] = value
-    ch1 = common.co_or_en()
-    c_string = common.co_en_sim(d_keys, ch1)
+    ch1 = co_or_en()
+    c_string = co_en_sim(d_keys, ch1)
     print(c_string)
 
 

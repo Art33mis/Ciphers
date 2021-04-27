@@ -132,7 +132,7 @@ def RSA():
         en = en_message()
 
 
-def attack(exp, n, c):
+def hastad_attack(exp, n, c):
     t = []
     for i in range(exp):
         mod_prod = 1
@@ -153,6 +153,5 @@ def attack(exp, n, c):
     message = str(gmpy2.iroot(partial_total % mod_prod, exp)[0])
     revert = ''.join([chr(int(s, 2)) for s in message.split()])
     return revert
-
 
 
